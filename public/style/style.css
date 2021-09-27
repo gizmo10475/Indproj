@@ -1,0 +1,22 @@
+body {
+    margin: 8px auto;
+    background: #fff;
+    width: 700px;
+}
+
+header {
+    background-color: #ddd;
+    padding: 1em;
+    font-size: 1.4em;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #666;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
