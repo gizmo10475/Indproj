@@ -3,32 +3,31 @@
  */
 "use strict";
 
-const port    = process.env.DBWEBB_PORT || 1337;
-const path    = require("path");
+const port = process.env.DBWEBB_PORT || 1337;
+const path = require("path");
 const express = require("express");
-const app     = express();
+const app = express();
 const routeIndex = require("./route/index.js");
-const routeToday = require("./route/today.js");
+const session = require("express-session");
 const middleware = require("./middleware/index.js");
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(
+    session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 
 app.set("view engine", "ejs");
 
 app.use(middleware.logIncomingToConsole);
 app.use(express.static(path.join(__dirname, "public")));
-// app.use("/public", express.static(__dirname + "views"));
-// app.use(express.static(path.join(__dirname, "views")));
-
 app.use("/", routeIndex);
-app.use("/today", routeToday);
 app.listen(port, logStartUpDetailsToConsole);
 
-
-
-/**
- * Log app details to console when starting up.
- *
- * @return {void}
- */
 function logStartUpDetailsToConsole() {
     let routes = [];
 
