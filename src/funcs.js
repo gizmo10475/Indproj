@@ -9,6 +9,8 @@ module.exports = {
     getAllVaccines: getAllVaccines,
     addVaccine: addVaccine,
     hashGetter: hashGetter,
+    getPatientData: getPatientData,
+    searchWeb: searchWeb
 };
 
 const mysql = require("promise-mysql");
@@ -33,8 +35,7 @@ async function newUser(username, name, passwordHash) {
     let res;
 
     res = await db.query(sql, [username, name, passwordHash]);
-    console.log(res);
-    console.info(`SQL: ${sql} got ${res.length} rows.`);
+    console.log("added user");
 }
 
 async function getHash(email) {
@@ -68,6 +69,15 @@ async function getAllVaccines() {
     return res;
 }
 
+async function getPatientData(ssn) {
+    let sql = `SELECT * FROM Patient WHERE ssn = ?`;
+    let res;
+
+    res = await db.query(sql, [ssn]);
+    return res;
+}
+
+
 async function addVaccine(ssn, name, vaccine, type, desc, phone) {
     let sql = `CALL addVaccine(?, ?, ?, ?, ?, ?, ?);`;
     let res;
@@ -86,4 +96,13 @@ async function addVaccine(ssn, name, vaccine, type, desc, phone) {
     ]);
     console.log(res);
     console.info(`SQL: ${sql} got ${res.length} rows.`);
+}
+
+
+async function searchWeb(email) {
+    let sql = `CALL search_register(?)`;
+    let res;
+
+    res = await db.query(sql, [email]);
+    return res[0];
 }

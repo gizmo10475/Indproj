@@ -1,0 +1,49 @@
+<%- include("header.ejs", {title: title}) %>
+
+
+<h1>Patient  <%= ssn %></h1>
+
+
+<table class="styled-table">
+    <tr>
+        <th>SSN</th>
+        <th>Name</th>
+        <th>Vaccine</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Phone</th>
+    </tr>
+
+<% for (const row of res) { %>
+    <tr>
+        <td>
+            <%= row.ssn %>
+        </td>
+        <td>
+            <%= row.name %>
+        </td>
+        <td>
+            <%= row.vaccine %>
+        </td>
+        <td>
+            <%= row.type %>
+        </td>
+        <td>
+            <%= row.date %>
+        </td>
+        <td>
+            <%= row.description %>
+        </td>
+        <td>
+            <%= row.phone %>
+        </td>
+    </tr>
+    <% }; %>
+
+
+</table>
+
+<a href="/patientadd/<%= ssn %>">Add new vaccine to this patient</a>
+
+<%- include("footer.ejs") %>

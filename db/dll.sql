@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Patient
 	type VARCHAR(20) NOT NULL,
 	date INT(8) NOT NULL,
 	description VARCHAR(250) NOT NULL,
-	phone INT(10) NOT NULL
+	phone CHAR(10) NOT NULL
 );
 
 
@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS Users
     name CHAR(50) NOT NULL,
 	pwhash VARCHAR(250) NOT NULL
 );
-
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS addUser $$
@@ -59,6 +58,38 @@ END$$
 DELIMITER ;
 
 
+DROP PROCEDURE IF EXISTS search_register;
+DELIMITER ;;
+CREATE PROCEDURE search_register(IN searchstring VARCHAR(255))
+BEGIN
+    SELECT *
+FROM 
+Patient
+WHERE
+		ssn LIKE searchstring OR
+		name LIKE searchstring OR
+        vaccine LIKE searchstring OR
+        type LIKE searchstring OR
+		description LIKE searchstring OR
+        phone LIKE searchstring OR
+		date LIKE searchstring
+;
+END
+;;
+DELIMITER ;
+
+CALL search_register("COVID-19");
+
+
+
+
+
+
+
+
+
+
+
 CALL hashgetter("test@test.com");
 
 CALL addVaccine("198705041111", "Mange Magnusson", "TBE", "-", "211005", "-", "0101486321");
@@ -70,6 +101,7 @@ SELECT * FROM Patient;
 SELECT * FROM Users;
 
 truncate table Users;
+truncate table Patient;
 
 drop table Users;
 drop table Patient;
@@ -77,7 +109,7 @@ drop table Patient;
 SELECT pwhash FROM Users WHERE uname = "test@test.com";
 
 INSERT INTO Users VALUES ("Eddie", "Edvin", 999999999);
-INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "Covid", "Pfizer", 210923, "first covid dose", 0768763121);
-INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "Covid", "Pfizer", 211005, "second covid dose", 0768763121);
+INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 210923, "first covid dose", 0768763121);
+INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211005, "second covid dose", 0768763121);
 
 INSERT INTO Users VALUES ("q@q", "Edvin", "q");
