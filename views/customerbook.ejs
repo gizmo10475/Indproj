@@ -1,14 +1,15 @@
 <%- include("header.ejs", {title: title}) %>
 
 
-<h1>Add vaccine to patient <%= ssn %></h1>
+<h1 class="title">Book a vaccine</h1>
 
-<form method="post">
+
+<form method="post" class="center">
     <label for="ssn">SSN:</label><br>
-    <input type="text" name="ssn" value="<%= ssn %>" maxlength="12" minlength="12" required readonly="true"><br><br>
+    <input type="text" name="ssn" value="" maxlength="12" minlength="12" required><br><br>
 
     <label for="name">Name:</label><br>
-    <input type="text" name="name" value="<%= res[0].name %>" required readonly="true"><br><br>
+    <input type="text" name="name" value="" required><br><br>
 
     <label for="vaccine">Vaccine:</label><br>
     <select id="vaccine" name="vaccine" required>
@@ -20,11 +21,8 @@
     <label for="type">Type:</label><br>
     <input type="text" name="type" value="" required><br><br>
 
-    <label for="description">Description:</label><br>
-    <input type="text" name="description" value="" required><br><br>
-
     <label for="phone">Phone:</label><br>
-    <input type="text" name="phone" value="<%= res[0].phone %>" required maxlength="10" readonly="true"><br><br>
+    <input type="text" name="phone" value="" required maxlength="10"><br><br>
 
 
 

@@ -10,18 +10,17 @@ module.exports = {
     addVaccine: addVaccine,
     hashGetter: hashGetter,
     getPatientData: getPatientData,
-    searchWeb: searchWeb
+    searchWeb: searchWeb,
+    bookVaccine: bookVaccine,
+    getAllBookings: getAllBookings,
+    getPatientBookData: getPatientBookData,
+    deleteBooking: deleteBooking
 };
 
 const mysql = require("promise-mysql");
 const config = require("../config/db/vaccine.json");
 let db;
 
-/**
- * Main function.
- * @async
- * @returns void
- */
 (async function () {
     db = await mysql.createConnection(config);
 
@@ -61,13 +60,22 @@ async function hashGetter(email) {
 }
 
 async function getAllVaccines() {
-    let sql = `SELECT * FROM Patient`;
+    let sql = `SELECT * FROM Patient LIMIT 10`;
     let res;
 
     res = await db.query(sql);
     // console.log(res);
     return res;
 }
+
+async function deleteBooking(ssn) {
+    let sql = `DELETE FROM book WHERE ssn = ?`;
+    let res;
+
+    res = await db.query(sql, [ssn]);
+    return res;
+}
+
 
 async function getPatientData(ssn) {
     let sql = `SELECT * FROM Patient WHERE ssn = ?`;
@@ -77,6 +85,21 @@ async function getPatientData(ssn) {
     return res;
 }
 
+async function getPatientBookData(ssn) {
+    let sql = `SELECT * FROM book WHERE ssn = ?`;
+    let res;
+
+    res = await db.query(sql, [ssn]);
+    return res;
+}
+
+async function getAllBookings() {
+    let sql = `SELECT * FROM book;`;
+    let res;
+
+    res = await db.query(sql);
+    return res;
+}
 
 async function addVaccine(ssn, name, vaccine, type, desc, phone) {
     let sql = `CALL addVaccine(?, ?, ?, ?, ?, ?, ?);`;
@@ -92,6 +115,21 @@ async function addVaccine(ssn, name, vaccine, type, desc, phone) {
         type,
         dateFormated,
         desc,
+        phone,
+    ]);
+    console.log(res);
+    console.info(`SQL: ${sql} got ${res.length} rows.`);
+}
+
+async function bookVaccine(ssn, name, vaccine, type, phone) {
+    let sql = `CALL bookvaccine(?, ?, ?, ?, ?);`;
+    let res;
+
+    res = await db.query(sql, [
+        ssn,
+        name,
+        vaccine,
+        type,
         phone,
     ]);
     console.log(res);

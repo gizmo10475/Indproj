@@ -1,13 +1,13 @@
 <%- include("header.ejs", {title: title}) %>
 
-<h1>Search</h1>
+<h1 class="title">Search</h1>
 
 
     <form class="label-left" method="post" action="/search">
         <label for="searchstring" name="searchstring">
         </label>
-        <input id="searchstring" type="text" name="searchstring" value="">
-        <input type="submit" formmethod="post" value="Sök">
+        <input id="searchstring" type="text" name="searchstring" value="" class="searchinput">
+        <input type="submit" formmethod="post" value="Search" class="buttonsearch">
     </form>
 
 
@@ -21,7 +21,7 @@
             <th>Description</th>
             <th>Phone</th>
         </tr>
-    
+
         <% for (const row of res) { %>
             <tr>
                 <td>

@@ -1,6 +1,44 @@
 <%- include("header.ejs", {title: title}) %>
 
 
-<h1>Bookings</h1>
+<h1 class="title">Bookings</h1>
+
+<table class="styled-table">
+    <tr>
+        <th>SSN</th>
+        <th>Name</th>
+        <th>Vaccine</th>
+        <th>Type</th>
+        <th>Phone</th>
+        <th>Add vaccine</th>
+    </tr>
+
+<% for (const row of res) { %>
+    <tr>
+        <td>
+                <%= row.ssn %>
+        </td>
+        <td>
+                <%= row.name %>
+        </td>
+        <td>
+            <%= row.vaccine %>
+        </td>
+        <td>
+            <%= row.type %>
+        </td>
+        <td>
+            <%= row.phone %>
+        </td>
+        <td>
+            <a href="/patientaddbook/<%= row.ssn %>">
+            Add vaccine to patient
+            </a>
+        </td>
+    </tr>
+    <% }; %>
+
+
+</table>
 
 <%- include("footer.ejs") %>

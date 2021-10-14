@@ -4,7 +4,6 @@ const readline = require("readline");
 const func = require("./src/funcs.js");
 const bcrypt = require("bcrypt");
 
-
 function exitProgram(code) {
     code = code || 0;
 
@@ -15,16 +14,15 @@ function exitProgram(code) {
 function showMenu() {
     console.log(`
         ---------------------------------------
-            Choose something from the menu:
+               add <email> <name> <pw>
         ---------------------------------------
-        menu - Displays this menu.
         `);
 }
 
-(async function() {
+(async function () {
     const rl = readline.createInterface({
         input: process.stdin,
-        output: process.stdout
+        output: process.stdout,
     });
 
     rl.setPrompt("Enter something: ");
@@ -44,13 +42,11 @@ function showMenu() {
                 exitProgram();
                 break;
             case "add":
-
                 const hashedPassword = await bcrypt.hash(lineArray[3], 10);
 
                 func.newUser(lineArray[1], lineArray[2], hashedPassword);
                 break;
             default:
-                showMenu();
                 break;
         }
 

@@ -1,7 +1,7 @@
 <%- include("header.ejs", {title: title}) %>
 
 
-<h1>Patient  <%= ssn %></h1>
+<h1 class="title">Patient  <%= ssn %></h1>
 
 
 <table class="styled-table">
@@ -44,6 +44,6 @@
 
 </table>
 
-<a href="/patientadd/<%= ssn %>">Add new vaccine to this patient</a>
+<a href="/patientadd/<%= ssn %>" class="button2">Add new vaccine to this patient</a>
 
 <%- include("footer.ejs") %>

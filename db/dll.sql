@@ -17,6 +17,16 @@ CREATE TABLE IF NOT EXISTS Users
 	pwhash VARCHAR(250) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS book
+(
+    ssn VARCHAR(12) NOT NULL,
+    name CHAR(50) NOT NULL,
+	vaccine VARCHAR(50) NOT NULL,
+	type VARCHAR(20) NOT NULL,
+	phone CHAR(10) NOT NULL
+);
+
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS addUser $$
 CREATE PROCEDURE addUser(
@@ -39,12 +49,29 @@ CREATE PROCEDURE addVaccine(
     a_type VARCHAR(20),
     date INT(8),
     a_desc VARCHAR(250),
-	a_phone INT(10)
+	a_phone CHAR(10)
 )
 BEGIN
     INSERT INTO Patient VALUES (a_ssn, a_name, a_vaccine, a_type, date, a_desc, a_phone);
 END$$
 DELIMITER ;
+
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS bookvaccine $$
+CREATE PROCEDURE bookvaccine(
+	a_ssn VARCHAR(12),
+    a_name CHAR(50),
+    a_vaccine VARCHAR(50),
+    a_type VARCHAR(20),
+	a_phone CHAR(10)
+)
+BEGIN
+    INSERT INTO Patient VALUES (a_ssn, a_name, a_vaccine, a_type, a_phone);
+END$$
+DELIMITER ;
+
 
 
 DELIMITER $$
@@ -106,10 +133,13 @@ truncate table Patient;
 drop table Users;
 drop table Patient;
 
+SELECT * FROM Patient LIMIT 10;
+
 SELECT pwhash FROM Users WHERE uname = "test@test.com";
 
 INSERT INTO Users VALUES ("Eddie", "Edvin", 999999999);
 INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 210923, "first covid dose", 0768763121);
 INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211005, "second covid dose", 0768763121);
+INSERT INTO Patient VALUES (197905060111, "Test Karlson", "COVID-19", "Pfizer", 211005, "second covid dose", "0768763121");
 
 INSERT INTO Users VALUES ("q@q", "Edvin", "q");
