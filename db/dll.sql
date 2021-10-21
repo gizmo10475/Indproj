@@ -8,11 +8,11 @@ CREATE TABLE IF NOT EXISTS Patient
 	description VARCHAR(250) NOT NULL,
 	phone CHAR(10) NOT NULL
 );
-
+DROP TABLE Patient;
 
 CREATE TABLE IF NOT EXISTS Users
 (
-    uname CHAR(20) NOT NULL,
+    uname CHAR(255) NOT NULL,
     name CHAR(50) NOT NULL,
 	pwhash VARCHAR(250) NOT NULL
 );
@@ -68,7 +68,22 @@ CREATE PROCEDURE bookvaccine(
 	a_phone CHAR(10)
 )
 BEGIN
-    INSERT INTO Patient VALUES (a_ssn, a_name, a_vaccine, a_type, a_phone);
+    INSERT INTO book VALUES (a_ssn, a_name, a_vaccine, a_type, a_phone);
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS removebooking $$
+CREATE PROCEDURE removebooking(
+	a_ssn VARCHAR(12),
+    a_name CHAR(50),
+    a_vaccine VARCHAR(50),
+    a_type VARCHAR(20),
+	a_phone CHAR(10)
+)
+BEGIN
+    DELETE FROM book WHERE (a_ssn, a_name, a_vaccine, a_type, a_phone);
 END$$
 DELIMITER ;
 
@@ -122,13 +137,16 @@ CALL hashgetter("test@test.com");
 CALL addVaccine("198705041111", "Mange Magnusson", "TBE", "-", "211005", "-", "0101486321");
 CALL addUser("test", "test@test.com", "aojshdakuhsgb&!%!¤%/dhjaks4123bd");
 
-
+CALL bookvaccine("198705041111", "Ed", "TBE", "pfizer", "0768777777");
+INSERT INTO book VALUES ("198705041111", "Ed", "TBE", "pfizer", "0768777777");
 
 SELECT * FROM Patient;
 SELECT * FROM Users;
+SELECT * FROM book;
 
 truncate table Users;
 truncate table Patient;
+truncate table book;
 
 drop table Users;
 drop table Patient;
@@ -140,6 +158,10 @@ SELECT pwhash FROM Users WHERE uname = "test@test.com";
 INSERT INTO Users VALUES ("Eddie", "Edvin", 999999999);
 INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 210923, "first covid dose", 0768763121);
 INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211005, "second covid dose", 0768763121);
-INSERT INTO Patient VALUES (197905060111, "Test Karlson", "COVID-19", "Pfizer", 211005, "second covid dose", "0768763121");
+INSERT INTO Patient VALUES (197905060111, "Test Karlson", "COVID-19", "Pfizer", 211005, "first covid dose", "0768763121");
 
 INSERT INTO Users VALUES ("q@q", "Edvin", "q");
+UPDATE Users SET pwhash = "aaaaaa" WHERE uname = "q@q";
+
+
+SELECT * FROM Patient ORDER BY date DESC LIMIT 10;

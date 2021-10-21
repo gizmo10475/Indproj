@@ -1,34 +1,43 @@
 <%- include("header.ejs", {title: title}) %>
 
 
-<h1 class="title">Book a vaccine</h1>
+<h1 class="title">Book a vaccine</h1><br>
 
 
 <form method="post" class="center">
-    <label for="ssn">SSN:</label><br>
-    <input type="text" name="ssn" value="" maxlength="12" minlength="12" required><br><br>
+    <div class="form__group">
+        <!-- <label class="form__label" for="ssn">SSN</label> -->
+        <input class="form__input" type="text" placeholder="SSN" name="ssn" value="" maxlength="12" minlength="12" required>
+    </div><br>
 
-    <label for="name">Name:</label><br>
-    <input type="text" name="name" value="" required><br><br>
+    <div class="form__group">
+        <!-- <label class="form__label" for="name">Name</label> -->
+        <input class="form__input" placeholder="Name" type="text" name="name" value="" required>
+    </div><br>
 
-    <label for="vaccine">Vaccine:</label><br>
-    <select id="vaccine" name="vaccine" required>
+
+
+
+    <!-- <label class="form__label" for="vaccine">Vaccine:</label><br> -->
+
+    <select class="form__input" id="vaccine" name="vaccine" required>
         <option value="COVID-19">COVID-19</option>
         <option value="TBE">TBE</option>
-    </select><br><br>
+    </select><br>
 
 
-    <label for="type">Type:</label><br>
-    <input type="text" name="type" value="" required><br><br>
+    <div class="form__group">
+        <!-- <label class="form__label" for="type">Type</label> -->
+        <input class="form__input" placeholder="Type" type="text" name="type" value="" required>
+    </div><br>
 
-    <label for="phone">Phone:</label><br>
-    <input type="text" name="phone" value="" required maxlength="10"><br><br>
+    <div class="form__group">
+        <!-- <label class="form__label" for="phone">Phone</label> -->
+        <input class="form__input" placeholder="Phone" type="text" name="phone" value="" required maxlength="10">
+    </div><br>
 
 
-
-
-
-    <input type="submit" value="Submit" class="button2">
+    <input class="form__input" type="submit" value="Submit" class="button2">
 </form>
 
 

@@ -1,0 +1,14 @@
+<%- include("header.ejs", {title: title}) %>
+
+<h1 class="title">Change password</h1><br>
+<form method="POST">
+    <div class="form__group">
+        <!-- <label for="password">New Password</label> -->
+        <input class="form__input" type="password" id="password" name="password" placeholder="New Password" required>
+    </div><br>
+
+
+    <input class="form__input" type="submit" value="Submit" class="button2">
+</form>
+
+<%- include("footer.ejs") %>

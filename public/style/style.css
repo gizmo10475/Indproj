@@ -1,7 +1,12 @@
 body {
   margin: 8px auto;
-  background: #fff;
+  /* background: #fff; */
   width: 700px;
+  /* background-image: url('/public/img/purplebackground.jpg'); */
+}
+
+body {
+  background: linear-gradient(90deg, #d7d6fa, #6e61cc);
 }
 
 header {
@@ -31,7 +36,7 @@ footer {
 }
 
 .styled-table thead tr {
-  background-color: #009879;
+  background-color: #600098;
   color: #ffffff;
   text-align: left;
 }
@@ -123,6 +128,22 @@ li a:hover:not(.active) {
   margin: auto;
 }
 
+.button3 {
+  background-color: #5D54A4;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  margin-top: 1em;
+}
+
 .buttonsearch {
   background-color: #5D54A4;
   border: none;
@@ -137,11 +158,17 @@ li a:hover:not(.active) {
   margin-left: 1em;
 }
 
+.logocenter {
+  display: block;
+  margin: auto;
+}
+
 .title {
   display: block;
   margin: auto;
   text-align: center;
   margin-top: 0.4em;
+  color: rgb(245, 245, 245);
 }
 
 .searchinput {
@@ -166,15 +193,11 @@ li a:hover:not(.active) {
   font-family: Raleway, sans-serif;
 }
 
-body {
-  background: linear-gradient(90deg, #C7C5F4, #776BCC);
-}
-
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  /* min-height: 80vh; */
 }
 
 .screen {
@@ -330,4 +353,44 @@ body {
 
 .social-login__icon:hover {
   transform: scale(1.5);
+}
+
+/* *, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-size: 62, 5%;
+} */
+
+.form__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  /* margin-left: 2rem; */
+  /* margin-top: 0.7rem; */
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 90%;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown+.form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
 }

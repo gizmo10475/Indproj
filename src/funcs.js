@@ -14,7 +14,8 @@ module.exports = {
     bookVaccine: bookVaccine,
     getAllBookings: getAllBookings,
     getPatientBookData: getPatientBookData,
-    deleteBooking: deleteBooking
+    deleteBooking: deleteBooking,
+    ChangePwHash: ChangePwHash
 };
 
 const mysql = require("promise-mysql");
@@ -59,8 +60,18 @@ async function hashGetter(email) {
     return res;
 }
 
+async function ChangePwHash(newPWhash, email) {
+    let sql = `UPDATE Users SET pwhash = ? WHERE uname = ?`;
+    let res;
+
+    res = await db.query(sql, [newPWhash, email]);
+    // console.log(res);
+    return res;
+}
+
+
 async function getAllVaccines() {
-    let sql = `SELECT * FROM Patient LIMIT 10`;
+    let sql = `SELECT * FROM Patient ORDER BY date DESC LIMIT 10`;
     let res;
 
     res = await db.query(sql);

@@ -1,11 +1,13 @@
 <%- include("header.ejs", {title: title}) %>
 
+<img src="/img/logo_white.png" class="logocenter">
 
   <h1 class="title">Welcome <%= name %></h1>
 
+  <a href="changepw"><button type="submit" class="button3">Change Password</button></a>
 
 <form action="" method="POST">
-  <button type="submit" class="button">Log Out</button>
+  <button type="submit" class="button3">Log Out</button>
 </form>
 
 <%- include("footer.ejs") %>

@@ -86,6 +86,38 @@ router.post("/", async function (req, response) {
 //     res.redirect("/");
 // });
 
+
+router.get("/changepw", (req, res) => {
+    let data = {
+        title: "Changepw",
+    };
+
+    if (req.session.loggedIn) {
+        res.render("changepw", data);
+    } else {
+        res.redirect("/");
+    }
+
+});
+
+
+router.post("/changepw", async (req, res) => {
+    let data = {
+        name: req.session.username,
+    };
+    console.log(req.session.username);
+
+    var password = req.body.password;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    var email = req.session.username;
+
+    data.res = await func.ChangePwHash(hashedPassword, email);
+
+    res.redirect("/user");
+});
+
+
+
 router.get("/vaccines", async (req, res) => {
     let data = {
         title: "Vaccines",
@@ -119,7 +151,7 @@ router.post("/customerbook", async (req, res) => {
 
     data.res = await func.bookVaccine(ssn, name, vaccine, type, phone);
 
-    res.redirect("customerbook");
+    res.redirect("thank");
 });
 
 

@@ -25,10 +25,14 @@
         <% for (const row of res) { %>
             <tr>
                 <td>
-                    <%= row.ssn %>
+                    <a href="/patient/<%= row.ssn %>">
+                        <%= row.ssn %>
+                    </a>
                 </td>
                 <td>
-                    <%= row.name %>
+                    <a href="/patient/<%= row.ssn %>">
+                        <%= row.name %>
+                    </a>
                 </td>
                 <td>
                     <%= row.vaccine %>
