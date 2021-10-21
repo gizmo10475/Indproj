@@ -156,9 +156,9 @@ SELECT * FROM Patient LIMIT 10;
 SELECT pwhash FROM Users WHERE uname = "test@test.com";
 
 INSERT INTO Users VALUES ("Eddie", "Edvin", 999999999);
-INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 210923, "first covid dose", 0768763121);
-INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211005, "second covid dose", 0768763121);
-INSERT INTO Patient VALUES (197905060111, "Test Karlson", "COVID-19", "Pfizer", 211005, "first covid dose", "0768763121");
+INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211001, "first covid dose", "0768763121");
+INSERT INTO Patient VALUES (199905060000, "Eddie Fajkovic", "COVID-19", "Pfizer", 211020, "second covid dose", "0768763121");
+INSERT INTO Patient VALUES (197905060111, "Test Karlson", "COVID-19", "Pfizer", 211009, "first covid dose", "0768763121");
 
 INSERT INTO Users VALUES ("q@q", "Edvin", "q");
 UPDATE Users SET pwhash = "aaaaaa" WHERE uname = "q@q";

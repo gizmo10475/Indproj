@@ -2,14 +2,12 @@
 
 <h1 class="title">Search</h1>
 
-
     <form class="label-left" method="post" action="/search">
         <label for="searchstring" name="searchstring">
         </label>
         <input id="searchstring" type="text" name="searchstring" value="" class="searchinput">
         <input type="submit" formmethod="post" value="Search" class="buttonsearch">
     </form>
-
 
     <table class="styled-table">
         <tr>
@@ -51,9 +49,6 @@
                 </td>
             </tr>
             <% }; %>
-    
-    
     </table>
-
 
 <%- include("footer.ejs") %>

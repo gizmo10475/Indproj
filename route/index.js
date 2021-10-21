@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 router.get("/user", (req, res) => {
     let data = {
         title: "User",
-        name: req.session.username
+        name: req.session.username,
     };
 
     if (req.session.loggedIn) {
@@ -86,7 +86,6 @@ router.post("/", async function (req, response) {
 //     res.redirect("/");
 // });
 
-
 router.get("/changepw", (req, res) => {
     let data = {
         title: "Changepw",
@@ -97,9 +96,7 @@ router.get("/changepw", (req, res) => {
     } else {
         res.redirect("/");
     }
-
 });
-
 
 router.post("/changepw", async (req, res) => {
     let data = {
@@ -115,8 +112,6 @@ router.post("/changepw", async (req, res) => {
 
     res.redirect("/user");
 });
-
-
 
 router.get("/vaccines", async (req, res) => {
     let data = {
@@ -154,12 +149,11 @@ router.post("/customerbook", async (req, res) => {
     res.redirect("thank");
 });
 
-
 router.get("/patient/:ssn", async (req, res) => {
     let ssn = req.params.ssn;
     let data = {
         title: `Patient ${ssn}`,
-        ssn: ssn
+        ssn: ssn,
     };
 
     if (req.session.loggedIn) {
@@ -185,7 +179,6 @@ router.get("/patientadd/:ssn", async (req, res) => {
         res.redirect("/");
     }
 });
-
 
 router.get("/patientaddbook/:ssn", async (req, res) => {
     let ssn = req.params.ssn;
@@ -231,7 +224,6 @@ router.post("/add", async (req, res) => {
     res.redirect("vaccines");
 });
 
-
 router.post("/patientadd/:ssn", async (req, res) => {
     let data = {
         title: "Add vaccine",
@@ -266,10 +258,8 @@ router.post("/patientaddbook/:ssn", async (req, res) => {
     data.res = await func.addVaccine(ssn, name, vaccine, type, desc, phone);
     data.res = await func.deleteBooking(ssn);
 
-
     res.redirect("/vaccines");
 });
-
 
 router.get("/book", async (req, res) => {
     let data = {
@@ -336,7 +326,5 @@ router.get("/search/:searchstring", async (req, res) => {
 
     res.render("search.ejs", data);
 });
-
-
 
 module.exports = router;

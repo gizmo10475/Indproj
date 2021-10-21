@@ -15,7 +15,7 @@ module.exports = {
     getAllBookings: getAllBookings,
     getPatientBookData: getPatientBookData,
     deleteBooking: deleteBooking,
-    ChangePwHash: ChangePwHash
+    ChangePwHash: ChangePwHash,
 };
 
 const mysql = require("promise-mysql");
@@ -69,7 +69,6 @@ async function ChangePwHash(newPWhash, email) {
     return res;
 }
 
-
 async function getAllVaccines() {
     let sql = `SELECT * FROM Patient ORDER BY date DESC LIMIT 10`;
     let res;
@@ -86,7 +85,6 @@ async function deleteBooking(ssn) {
     res = await db.query(sql, [ssn]);
     return res;
 }
-
 
 async function getPatientData(ssn) {
     let sql = `SELECT * FROM Patient WHERE ssn = ?`;
@@ -136,17 +134,10 @@ async function bookVaccine(ssn, name, vaccine, type, phone) {
     let sql = `CALL bookvaccine(?, ?, ?, ?, ?);`;
     let res;
 
-    res = await db.query(sql, [
-        ssn,
-        name,
-        vaccine,
-        type,
-        phone,
-    ]);
+    res = await db.query(sql, [ssn, name, vaccine, type, phone]);
     console.log(res);
     console.info(`SQL: ${sql} got ${res.length} rows.`);
 }
-
 
 async function searchWeb(email) {
     let sql = `CALL search_register(?)`;

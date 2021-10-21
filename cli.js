@@ -14,7 +14,7 @@ function exitProgram(code) {
 function showMenu() {
     console.log(`
         ---------------------------------------
-               add <email> <name> <pw>
+        |      add <email> <name> <pw>        |
         ---------------------------------------
         `);
 }
@@ -25,9 +25,9 @@ function showMenu() {
         output: process.stdout,
     });
 
+    showMenu();
     rl.setPrompt("Enter something: ");
     rl.prompt();
-    showMenu();
 
     rl.on("close", exitProgram);
     rl.on("line", async (input) => {
@@ -42,9 +42,12 @@ function showMenu() {
                 exitProgram();
                 break;
             case "add":
-                const hashedPassword = await bcrypt.hash(lineArray[3], 10);
-
-                func.newUser(lineArray[1], lineArray[2], hashedPassword);
+                try {
+                    const hashedPassword = await bcrypt.hash(lineArray[3], 10);
+                    func.newUser(lineArray[1], lineArray[2], hashedPassword);
+                } catch (error) {
+                    console.log("something went wrong, try again.");
+                }
                 break;
             default:
                 break;

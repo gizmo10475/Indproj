@@ -3,11 +3,10 @@
 
 <h1 class="title">Add vaccine</h1><br>
 
-
 <form method="post">
     <div class="form__group">
         <!-- <label class="form__label" for="ssn">SSN</label> -->
-        <input class="form__input" type="text" placeholder="SSN" name="ssn" value="" maxlength="12" minlength="12" required>
+        <input class="form__input" type="text" placeholder="SSN XXXXXXXX-XXXX" name="ssn" value="" maxlength="12" minlength="12" pattern="[19,20]{2}[0-9]{2}[0,1]{1}[0-9]{1}[0-3]{1}[0-9]{1}[0-9]{4}" required>
     </div><br>
 
     <div class="form__group">
@@ -19,7 +18,6 @@
         <option value="COVID-19">COVID-19</option>
         <option value="TBE">TBE</option>
     </select><br>
-
 
     <div class="form__group">
         <!-- <label class="form__label" for="type">Type</label> -->
@@ -35,10 +33,6 @@
         <!-- <label class="form__label" for="phone">Phone</label> -->
         <input class="form__input" placeholder="Phone" type="text" name="phone" value="" required maxlength="10">
     </div><br>
-
-
-
-
 
     <input class="form__input" type="submit" value="Submit" class="button2">
 </form>
