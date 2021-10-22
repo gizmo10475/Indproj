@@ -20,17 +20,17 @@
 
     <div class="form__group">
         <!-- <label class="form__label" for="type">Type</label> -->
-        <input class="form__input" placeholder="Type" type="text" name="type" value="" required>
+        <input class="form__input" placeholder="Type" type="text" name="type" value="" pattern="[a-zA-Z0-9_ ]{1,20}" required>
     </div><br>
 
     <div class="form__group">
         <!-- <label for="description">Description:</label><br> -->
-        <input class="form__input" type="text" placeholder="Description" name="description" value="" required>
+        <input class="form__input" type="text" placeholder="Description" name="description" value="" pattern="[a-zA-Z0-9_ ]{1,100}" required>
     </div><br>
 
     <div class="form__group">
         <!-- <label class="form__label" for="phone">Phone</label> -->
-        <input class="form__input" placeholder="Phone" type="text" name="phone" value="<%= res[0].phone %>" required maxlength="10" readonly="true">
+        <input class="form__input" placeholder="Phone" type="text" name="phone" value="<%= res[0].phone %>" required maxlength="10" pattern="[0-9]{10}" readonly="true">
     </div><br>
 
     <input class="form__input" type="submit" value="Submit" class="button2">

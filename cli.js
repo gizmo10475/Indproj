@@ -43,8 +43,14 @@ function showMenu() {
                 break;
             case "add":
                 try {
-                    const hashedPassword = await bcrypt.hash(lineArray[3], 10);
-                    func.newUser(lineArray[1], lineArray[2], hashedPassword);
+                      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                        if (lineArray[1].match(mailformat)) {
+                            const hashedPassword = await bcrypt.hash(lineArray[3], 10);
+                            func.newUser(lineArray[1], lineArray[2], hashedPassword);
+                            console.log("Success");
+                        } else {
+                            console.log("something went wrong, try again.");
+                        }
                 } catch (error) {
                     console.log("something went wrong, try again.");
                 }
